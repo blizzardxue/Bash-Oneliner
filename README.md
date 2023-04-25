@@ -61,14 +61,19 @@ Esc + c
 # converts letter under the cursor to uppercase, rest of the word to lowercase.
 ```
 
-##### Run history number (e.g. 53)
+##### History mechanism
 ```bash
-!53
+history  # list shell historical commands 
+
+!53  # run the 53 command again
+
+!-1  # == !!
+
+!-3  # run the third from last command again
 ```
 
-##### Run last command
+##### sudo rerun last command
 ```bash
-!!
 # run the previous command using sudo
 sudo !!
 ```
@@ -93,7 +98,7 @@ sudo !!
 !cat
 # or
 !c
-# run cat filename again
+# run the last cat-command or c*-command again
 ```
 
 ##### Bash globbing
@@ -975,7 +980,7 @@ grep -rl '192.168.1.111' /etc | xargs sed -i 's/192.168.1.111/192.168.2.111/g'
 
 ## Find
 [[back to top](#handy-bash-one-liners)]
-##### List all sub directory/file in the current directory
+##### List all sub directories/files in the current directory
 ```bash
 find .
 ```
@@ -1194,6 +1199,15 @@ date -d"1 week ago" +"%F %H:%M:%S"
 # add 1 day to date
 date -d"-1 day ago" +"%F %H:%M:%S"
 # 2023-03-12 16:17:09
+```
+
+```bash
+# add 100 days or substract 100 days to date
+date -d"100 days" +"%F %H:%M:%S"
+# 2023-08-03 21:42:05
+
+date -d"-100 days" +"%F %H:%M:%S"
+# 2023-01-15 21:42:30
 ```
 
 ##### wait for random duration (e.g. sleep 1-5 second, like adding a jitter)
@@ -3257,20 +3271,22 @@ declare array=()
 declare -A array=()
 ```
 
-##### Send a directory
+##### Copy files or directories between Machines
 ```bash
 scp -r directoryname user@ip:/path/to/send
+
+scp -r w541:/home/john/xxx Mac16:/Users/john/xxx  #default current user
 ```
 
 ##### Fork bomb
 ```bash
 # Don't try this at home!
 # It is a function that calls itself twice every call until you run out of system resources.
-# A '# ' is added in front for safety reason, remove it when seriously you are testing it.
+# A '# ' is added in front of the command for safety reason, remove it when seriously you are testing it.
 # :(){:|:&};:
 ```
 
-##### Use the last argument
+##### History: Use the last argument
 ```bash
 !$
 ```
